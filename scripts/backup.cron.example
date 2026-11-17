@@ -1,0 +1,12 @@
+# Install as /etc/cron.d/kuma-backup (no dots in the filename on Debian/Ubuntu).
+#   sudo cp scripts/backup.cron.example /etc/cron.d/kuma-backup
+#   sudo chmod 644 /etc/cron.d/kuma-backup
+#
+# Weekly: Sunday 03:15 — kuma + kuma-wa-bridge
+# Requires /srv/stacks/kuma-wa-bridge/.env with REMOTE_* / KEEP settings.
+# Run user must be able to read stack/data paths and use the SSH key.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+15 3 * * 0 joern cd /srv/stacks/kuma-wa-bridge && ./scripts/backup.manual.sh >> /srv/stacks/kuma-wa-bridge/logs/backup-cron.log 2>&1
