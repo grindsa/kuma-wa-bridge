@@ -51,10 +51,7 @@ if ! docker info >/dev/null 2>&1; then
   COMPOSE=(sudo "${COMPOSE[@]}")
 fi
 
-echo "==> pulling image (if any)"
-"${COMPOSE[@]}" pull || true
-
-echo "==> rebuilding / recreating stack"
+echo "==> rebuilding image locally and recreating stack"
 "${COMPOSE[@]}" up -d --build --remove-orphans
 
 echo "==> status"

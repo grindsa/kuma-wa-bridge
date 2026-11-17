@@ -1,7 +1,7 @@
 services:
   kuma-wa-bridge:
-    image: ${IMAGE:-ghcr.io/grindsa/kuma-wa-bridge:latest}
     build: .
+    image: ${IMAGE:-kuma-wa-bridge:latest}
     container_name: kuma-wa-bridge
     restart: unless-stopped
     env_file:
