@@ -1,0 +1,20 @@
+services:
+  kuma-wa-bridge:
+    build: .
+    image: kuma-wa-bridge:latest
+    container_name: kuma-wa-bridge
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      PORT: "8080"
+    ports:
+      # LAN-local only; Kuma reaches this via host.docker.internal
+      - "127.0.0.1:8089:8080"
+    networks:
+      - pi-monitor
+
+networks:
+  pi-monitor:
+    name: pi-monitor
+    external: true
