@@ -17,13 +17,13 @@ sudo docker compose up -d --build
 curl -s http://127.0.0.1:8089/health
 ```
 
-## Upgrade
+## Deploy / upgrade
 
 From the checkout on the Pi (keeps your local `.env`):
 
 ```bash
 cd /srv/stacks/kuma-wa-bridge
-./upgrade.sh
+./deploy.sh
 ```
 
 The script `git pull --ff-only`s the current branch, rebuilds the image on the Pi, recreates the container, and hits `/health`. It aborts if `.env` is missing or the working tree has local changes.

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fetch latest commits from GitHub and restart kuma-wa-bridge.
+# Pull latest commits from GitHub, rebuild the image, and restart kuma-wa-bridge.
 set -euo pipefail
 
 STACK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -16,7 +16,7 @@ if [[ ! -f .env ]]; then
 fi
 
 if [[ ! -d .git ]]; then
-  echo "error: $STACK_DIR is not a git checkout; clone the repo to use upgrade.sh" >&2
+  echo "error: $STACK_DIR is not a git checkout; clone the repo to use deploy.sh" >&2
   exit 1
 fi
 
@@ -61,4 +61,4 @@ curl -fsS "http://127.0.0.1:${HOST_PORT:-8089}/health" || \
   curl -fsS "http://127.0.0.1:8089/health" || \
   echo "warning: health check failed (is the publish port reachable?)"
 echo
-echo "upgrade done."
+echo "deploy done."
